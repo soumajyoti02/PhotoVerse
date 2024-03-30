@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const Explore = () => {
+const Explore = ({ params }) => {
     const access_key = "Z79VCnstJy-KX6RXnze1D1hphoCx5Y2brwCwbdEM-UA"
 
     const [image, setImage] = useState([]);
@@ -28,8 +28,10 @@ const Explore = () => {
         if (searchParams.get('search')) {
             setSearch(searchParams.get('search'));
             console.log(`SearchParam: ${search}`);
-
         }
+        console.log(`param sluf is ${params.slug}`);
+
+
         console.log(`Search text from Main: ${search}`);
         setPage(1)
         const token = localStorage.getItem("sessionToken")
@@ -141,7 +143,7 @@ const Explore = () => {
 
     }
     return (
-        <Suspense>
+        <>
 
             <Navbar search={search} setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
 
@@ -205,7 +207,7 @@ const Explore = () => {
                     </svg>
                 </button>
             </div>
-        </Suspense>
+        </>
 
     )
 }
