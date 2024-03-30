@@ -141,9 +141,12 @@ const Explore = () => {
 
     }
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <Navbar search={search} setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
-            <p className='text-xl md:text-3xl font-extrabold text-center my-10'>Showing Images: {search}</p>
+        <>
+            <Suspense>
+                <Navbar search={search} setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
+
+                <p className='text-xl md:text-3xl font-extrabold text-center my-10'>Showing Images: {search}</p>
+            </Suspense>
             <ToastContainer
                 position="bottom-left"
                 autoClose={3000}
@@ -202,7 +205,7 @@ const Explore = () => {
                     </svg>
                 </button>
             </div>
-        </Suspense>
+        </>
 
     )
 }
