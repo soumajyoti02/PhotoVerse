@@ -141,12 +141,12 @@ const Explore = () => {
 
     }
     return (
-        <>
-            <Suspense>
-                <Navbar search={search} setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
+        <Suspense>
 
-                <p className='text-xl md:text-3xl font-extrabold text-center my-10'>Showing Images: {search}</p>
-            </Suspense>
+            <Navbar search={search} setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
+
+            <p className='text-xl md:text-3xl font-extrabold text-center my-10'>Showing Images: {search}</p>
+
             <ToastContainer
                 position="bottom-left"
                 autoClose={3000}
@@ -205,7 +205,7 @@ const Explore = () => {
                     </svg>
                 </button>
             </div>
-        </>
+        </Suspense>
 
     )
 }
