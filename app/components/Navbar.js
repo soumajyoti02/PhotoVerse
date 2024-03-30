@@ -76,9 +76,9 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
                     <li className='flex h-14 justify-center items-center border-b border-slate-300'>
                         <Link href={'/popular'} className='text-black text-lg text-center  font-bold '>Popular Images</Link>
                     </li>
-                    <li className='flex h-14 justify-center items-center'>
-                        {isToken && <Link href={'/mylikes'} className='text-black text-lg text-center  font-bold '>My Likes</Link>}
-                    </li>
+                    {isToken && <li className='flex h-14 justify-center items-center'>
+                        <Link href={'/mylikes'} className='text-black text-lg text-center  font-bold '>My Likes</Link>
+                    </li>}
                     <li className="flex h-14 justify-center">
                         {!isToken && <Link href={'/'} onClick={() => { setisSignup(false); setisLogin(true); setsearchText(''); setMenu(!menu) }} className='bg-yellow-400 w-28 rounded-3xl p-2 font-bold text-center m-auto mt-5 cursor-pointer select-none'>Login</Link>}
                         {isToken && <Link href={'/'} onClick={handleLogout} className='bg-yellow-400 w-28 rounded-3xl p-2 font-bold text-center m-auto  cursor-pointer select-none'>Logout</Link>}
