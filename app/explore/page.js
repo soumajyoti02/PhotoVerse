@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, Suspense } from 'react'
 import Navbar from '../components/Navbar'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,19 +18,27 @@ const Explore = ({ params }) => {
     const [email, setEmail] = useState('')
     const [isToken, setisToken] = useState(false)
 
+    const [clicked, setClicked] = useState(false);
+
     const [page, setPage] = useState(1)
 
     const router = useRouter()
-    const searchParams = useSearchParams()
+    // const searchParams = useSearchParams()
 
 
     useEffect(() => {
-        if (searchParams.get('search')) {
-            setSearch(searchParams.get('search'));
+        const queryString = window.location.search;
+        const params = new URLSearchParams(queryString);
+        const searchParam = params.get('search');
+        if (searchParam) {
+            setSearch(searchParam);
             console.log(`SearchParam: ${search}`);
         }
-        console.log(`param sluf is ${params.slug}`);
-
+        // if (searchParams.get('search')) {
+        //     setSearch(searchParams.get('search'));
+        //     console.log(`SearchParam: ${search}`);
+        // }
+        console.log(`JS param is ${searchParam}`);
 
         console.log(`Search text from Main: ${search}`);
         setPage(1)
@@ -42,6 +50,7 @@ const Explore = ({ params }) => {
         }
         fetchData()
     }, [])
+
 
     useEffect(() => {
         console.log(`Search text from useeffect: ${search}`);
@@ -55,7 +64,6 @@ const Explore = ({ params }) => {
     }, [page])
 
     const fetchData = async () => {
-
         const response = await fetch(`https://api.unsplash.com/search/photos?page=${page}&query=${search}&client_id=${access_key}`);
 
         setLoading(true)
@@ -145,7 +153,7 @@ const Explore = ({ params }) => {
     return (
         <>
 
-            <Navbar search={search} setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
+            <Navbar setSearch={setSearch} isToken={isToken} setisToken={setisToken} setClicked={setClicked} />
 
             <p className='text-xl md:text-3xl font-extrabold text-center my-10'>Showing Images: {search}</p>
 

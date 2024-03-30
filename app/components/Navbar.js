@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToken, search, setSearch }) => {
+const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToken, setSearch }) => {
     const [menu, setMenu] = useState(false)
     const [searchText, setsearchText] = useState('')
 
