@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.min.css';
 const Mylikes = () => {
     const [isToken, setisToken] = useState(false)
     const [imageList, setimageList] = useState([])
-    const [url, setUrl] = useState('')
 
     const fetchData = async (email) => {
         console.log(`email from fetchdata: ${email}`);
@@ -70,7 +69,7 @@ const Mylikes = () => {
     return (
         <>
             <Navbar isToken={isToken} setisToken={setisToken} />
-            <div className="min-h-screen">
+            <div className="min-h-screen ">
                 <p className="text-2xl md:text-3xl font-bold text-center my-10">My Favourites ({imageList.length} images)</p>
                 <ToastContainer
                     position="bottom-left"
@@ -85,7 +84,7 @@ const Mylikes = () => {
                     theme="light"
                 />
 
-                <div className="h-fit grid grid-flow-dense grid-cols-1 md:grid-cols-4 gap-2 w-11/12 m-auto">
+                <div className="h-fit grid grid-flow-dense grid-cols-1 md:grid-cols-4 gap-2 w-11/12 m-auto ">
                     {
                         imageList.map((item, index) => {
                             return (<div key={item._id} className="flex flex-wrap items-center relative rounded-3xl">
@@ -99,8 +98,8 @@ const Mylikes = () => {
                                     <div className="absolute inset-0 flex items-end mb- cursor-pointer w-full m-auto">
                                         <div className="flex justify-between items-center h-16 w-full px-5 backdrop-blur-sm rounded-3xl">
                                             <div className="flex">
-                                                <button onClick={() => { handleRemove(item.url) }} type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex ">Like
-                                                    <Image height={20} width={20} src='/like.png' alt="" className=' backdrop-blur-3xl rounded-full ml-4' />
+                                                <button onClick={() => { handleRemove(item.url) }} type="button" className="text-white bg-gradient-to-r from-red-900 via-red-700 to-red-600 hover:bg-gradient-to-br  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex ">Remove
+                                                    <Image height={20} width={20} src='/delete.png' alt="" className=' backdrop-blur-3xl rounded-full ml-4' />
                                                 </button>
 
                                             </div>

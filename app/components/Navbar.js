@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToken }) => {
+const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToken, search, setSearch }) => {
     const [menu, setMenu] = useState(false)
     const [searchText, setsearchText] = useState('')
 
@@ -15,6 +15,8 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
     }
 
     const handleSearch = () => {
+        // Only for explore route
+        setSearch(searchText)
     }
 
 
@@ -46,7 +48,8 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
                                 <Image onClick={handleSearch} width={37} height={50} src="/search.png" alt="" className='h-9 cursor-pointer' />
                             </Link>
                         </li>
-                        <div className="flex justify-center items-center space-x-12">
+                        <div className="flex justify-center items-center space-x-8">
+                            <Link href={'/explore'} className='text-black text-lg text-center font-bold '>Explore</Link>
                             <Link href={'/popular'} className='text-black text-lg text-center font-bold '>Popular</Link>
                             {isToken && <Link href={'/mylikes'} className='text-black text-lg text-center font-bold '>My Likes</Link>}
                             {!isToken && <Link href={'/'} onClick={() => { setisSignup(false); setisLogin(true) }} className='bg-yellow-400 w-28 rounded-3xl p-2 font-bold text-center m-auto hover:bg-yellow-500 cursor-pointer'>
