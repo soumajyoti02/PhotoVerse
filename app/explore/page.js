@@ -80,10 +80,6 @@ const Explore = () => {
         await fetchData();
     };
 
-
-
-
-
     const handleLike = async (url, id) => {
         console.log(isToken);
         console.log(email);
@@ -145,7 +141,7 @@ const Explore = () => {
 
     }
     return (
-        <>
+        <Suspense fallback={<div>Loading...</div>}>
             <Navbar search={search} setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
             <p className='text-xl md:text-3xl font-extrabold text-center my-10'>Showing Images: {search}</p>
             <ToastContainer
@@ -206,32 +202,9 @@ const Explore = () => {
                     </svg>
                 </button>
             </div>
-        </>
+        </Suspense>
+
     )
 }
-
-
-{/* <div key={item.id} className="flex items-center">
-    <div>
-        <Image onClick={() => { handleLike(item.urls.regular) }} width={400} height={400} className="h-auto max-w-full rounded-lg cursor-pointer" src={item.urls.regular} alt={item.alt_description} />
-    </div>
-</div> */}
-
-
-{/* <div key={item.id} className="flex flex-wrap items-center relative rounded-3xl">
-    <div className="absolute inset-0 opacity-50"></div>
-
-    <div className="relative bg-gray-600 rounded-3xl">
-        <Image
-            onClick={() => { handleLike(item.urls.regular) }} width={400} height={400}
-            src={item.urls.regular} alt={item.alt_description}
-            className="opacity-40 h-auto max-w-full rounded-3xl cursor-pointer"
-        />
-
-        <div className="absolute inset-0 flex justify-center items-end md:mb-10 mb-3 ">
-
-        </div>
-    </div>
-</div> */}
 
 export default Explore
