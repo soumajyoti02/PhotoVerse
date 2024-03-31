@@ -19,6 +19,7 @@ export default function Home() {
 	const [issignup, setisSignup] = useState(true)
 	const [isToken, setisToken] = useState(false)
 	const [search, setSearch] = useState('')
+	const [loginButtonDisplay, setLoginButtonDisplay] = useState(true)
 	const router = useRouter()
 
 	const [error, setError] = useState(false)
@@ -99,6 +100,7 @@ export default function Home() {
 
 	const handleLogin = async (e) => {
 		e.preventDefault()
+		setLoginButtonDisplay(false)
 		if (!email || !password) {
 			setError("All fields are necessery.")
 			return;
@@ -234,7 +236,7 @@ export default function Home() {
 								</div>
 
 
-								<button type="submit" onClick={handleLogin} className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
+								<button disabled={!loginButtonDisplay} type="submit" onClick={handleLogin} className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg disabled:bg-indigo-300 disabled:hover:bg-indigo-300">Login</button>
 								<p className="text-xs text-gray-500 mt-3">Don&apos;t have account? <span onClick={() => { setisSignup(!issignup); setisLogin(!islogin) }} className="underline cursor-pointer">Sign Up here</span></p>
 							</div>
 						</form>}
