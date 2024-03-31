@@ -11,22 +11,19 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-
-
-
 export default function Home() {
 	const [islogin, setisLogin] = useState(false)
 	const [issignup, setisSignup] = useState(true)
 	const [isToken, setisToken] = useState(false)
 	const [search, setSearch] = useState('')
 	const [loginButtonDisplay, setLoginButtonDisplay] = useState(true)
-	const router = useRouter()
 
 	const [error, setError] = useState(false)
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
+	const router = useRouter()
 
 	useEffect(() => {
 		const token = localStorage.getItem("sessionToken")
@@ -38,6 +35,7 @@ export default function Home() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		setLoginButtonDisplay(false)
 
 		setName('')
 		setEmail('')
@@ -210,7 +208,7 @@ export default function Home() {
 								</div>
 
 								<p className="text-xs font-bold text-red-700 mb-1">{error}</p>
-								<button type="submit" onClick={handleSubmit} className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
+								<button disabled={!loginButtonDisplay} type="submit" onClick={handleSubmit} className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
 
 
 								<p className="text-xs text-gray-500 mt-3">Already have account? <span onClick={() => { setisSignup(!issignup); setisLogin(!islogin) }} className="underline cursor-pointer">Sign in here</span></p>
@@ -242,9 +240,6 @@ export default function Home() {
 						</form>}
 
 						{isToken && <div className="flex justify-center items-center h-fit md:w-[40%] relative mt-10 md:mt-0 shadow-slate-600 shadow-xl hover:shadow-2xl transition-shadow rounded-3xl">
-							{/* Overlay with opacity */}
-							<div className="absolute inset-0  opacity-50"></div>
-
 							{/* Image */}
 							<div className="relative bg-gray-600 rounded-3xl">
 								<Image

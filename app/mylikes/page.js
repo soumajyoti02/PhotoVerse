@@ -120,10 +120,10 @@ const Mylikes = () => {
                   <Image
                     width={400} height={400}
                     src={item.url} alt={'item'}
-                    className={`imageitem h-auto max-w-full rounded-3xl cursor-pointer `}
+                    className={`imageitem h-auto max-w-full rounded-3xl  `}
                   />
 
-                  <div className={`hoverbutton absolute inset-0 cursor-pointer `}>
+                  <div className={`hoverbutton absolute inset-0  `}>
                     <div className="flex justify-between items-center h-16 md:w-[60%] w-[48%] mx-auto rounded-3xl mt-10 ">
                       <div className="flex h-full items-end md:pb-2.5 ">
                         <button onClick={() => { handleRemove(item.url) }} type="button" className="text-white  md:px-5 md:py-2 text-center  mb-5 md:mb-0 ml-2 flex rounded-lg backdrop-blur-sm  justify-center">

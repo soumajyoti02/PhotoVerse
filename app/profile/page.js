@@ -133,8 +133,10 @@ const Profile = () => {
     return (
         <>
             <Navbar isToken={isToken} setisToken={setisToken} />
-            <div className="min-h-[70vh]">
-                <p className="text-xl md:text-2xl font-bold text-center my-10">My Profile</p>
+            <div className="min-h-[75vh]">
+                <div className="flex justify-center items-center h-28">
+                    <p className="text-lg md:text-3xl font-bold w-fit h-fit bg-slate-300 py-3 px-6 shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow rounded-3xl select-none">My Profile</p>
+                </div>
                 <ToastContainer
                     position="bottom-left"
                     autoClose={3000}

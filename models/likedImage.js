@@ -22,6 +22,19 @@ const likedImageSchema = new Schema({
         type: String,
         required: false
     },
+    desc: {
+        type: String,
+        required: false
+    },
+    owner: {
+        type: {
+            username: String,
+            profile_image: String,
+            instagram_username: String,
+            location: String
+        },
+        required: false
+    },
 
 }, { timestamps: true });
 
