@@ -124,11 +124,11 @@ const Popular = () => {
                 />
 
                 {/* Fetching the images from imageList array */}
-                <div className="h-fit grid grid-flow-dense grid-cols-1 md:grid-cols-4 gap-2 w-11/12 m-auto">
+                <div className="ctr  w-11/12">
                     {
                         imageList.map((item, index) => {
-                            return (<div key={item._id} className="flex flex-wrap items-center relative rounded-3xl">
-                                <div className="relative rounded-3xl">
+                            return (<div key={item._id} className="box  relative rounded-3xl">
+                                <div className=" imageBoxrelative rounded-3xl">
                                     <Image
                                         width={400} height={400}
                                         src={item.url} alt={'item'}

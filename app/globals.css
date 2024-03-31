@@ -6,11 +6,30 @@ body {
     overflow-x: hidden;
 }
 
-.mtv1 {
-    display: grid;
-    grid-column-gap: var(--column-gutter);
-    align-items: start;
-    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
-    --column-gutter: 24px;
-    --columns: 4;
+.ctr {
+    width: 1400px;
+    margin: 20px auto;
+    columns: 4;
+    column-gap: 20px;
+}
+
+.ctr .box {
+    width: 100%;
+    margin-bottom: 20px;
+    break-inside: avoid;
+    position: relative;
+}
+
+.imageBox {
+    max-width: 100%;
+    border-radius: 15px;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .ctr {
+        width: calc(100% - 20px);
+        column-gap: 10px;
+        columns: 1;
+    }
 }

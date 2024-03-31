@@ -42,7 +42,7 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
                     {/* Desktop menu */}
                     <ul className={`md:flex hidden w-[80%] justify-between items-center " `}>
                         <li className='search flex bg-gray-300 w-[35rem] m-auto rounded-3xl  '>
-                            <input value={searchText} onChange={(e) => setsearchText(e.target.value)} type="search" name="search" id="search" placeholder='Type Category' className='py-1 px-5 w-[90%] rounded-l-3xl h-10 bg-gray-300 text-black placeholder:text-slate-500 outline-none' />
+                            <input value={searchText} onChange={(e) => setsearchText(e.target.value)} type="search" name="search" id="search" placeholder='Type Something' className='py-1 px-5 w-[90%] rounded-l-3xl h-10 bg-gray-300 text-black placeholder:text-slate-500 outline-none' />
 
                             <Link href={{ pathname: '/explore', query: { search: searchText } }}>
                                 <Image onClick={handleSearch} width={37} height={50} src="/search.png" alt="" className='h-9 cursor-pointer' />
@@ -65,7 +65,7 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
                 {/* Hamburger menu */}
                 {menu && <ul className={`mb-3 `}>
                     <li className='search flex  bg-gray-300 w-10/12 m-auto rounded-3xl mt-5'>
-                        <input value={searchText} onChange={(e) => setsearchText(e.target.value)} type="search" name="search" id="search" placeholder='Type Category' className='py-1 px-5 w-[85%] rounded-l-3xl h-10 bg-gray-300 text-black placeholder:text-black outline-none' />
+                        <input value={searchText} onChange={(e) => setsearchText(e.target.value)} type="search" name="search" id="search" placeholder='Type Something' className='py-1 px-5 w-[85%] rounded-l-3xl h-10 bg-gray-300 text-black placeholder:text-black outline-none' />
                         <Link href={{ pathname: '/explore', query: { search: searchText } }}>
                             <Image onClick={handleSearch} width={37} height={50} src="/search.png" alt="" className='h-9 ' />
                         </Link>

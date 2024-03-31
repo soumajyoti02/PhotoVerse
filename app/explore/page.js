@@ -165,12 +165,12 @@ const Explore = () => {
             />
 
             {/* Fetching the images from the image array */}
-            <div className="min-h-screen grid grid-flow-dense grid-cols-1 md:grid-cols-4 gap-2 w-11/12 m-auto">
+            <div className="ctr  w-11/12">
                 {
                     image.map((item) => {
-                        return (<div key={item.id} className="flex flex-wrap items-center relative rounded-3xl">
+                        return (<div key={item.id} className="box  relative rounded-3xl">
 
-                            <div className="relative rounded-3xl">
+                            <div className="imageBox relative rounded-3xl">
                                 <Image
                                     width={400} height={400}
                                     src={item.urls.regular} alt={item.alt_description}

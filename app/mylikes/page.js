@@ -103,11 +103,11 @@ const Mylikes = () => {
                 />
 
                 {/* Fetching the images from the imageList array */}
-                <div className="h-fit grid grid-flow-dense grid-cols-1 md:grid-cols-4 gap-2 w-11/12 m-auto ">
+                <div className="ctr  w-11/12 ">
                     {
                         imageList.map((item, index) => {
-                            return (<div key={item._id} className="flex flex-wrap items-center relative rounded-3xl">
-                                <div className="relative rounded-3xl">
+                            return (<div key={item._id} className="box  relative rounded-3xl">
+                                <div className="imageBox relative rounded-3xl">
                                     <Image
                                         width={400} height={400}
                                         src={item.url} alt={'item'}
@@ -115,18 +115,18 @@ const Mylikes = () => {
                                     />
 
                                     <div className="absolute inset-0 flex items-end cursor-pointer w-full m-auto">
-                                        <div className="flex justify-between items-center h-16 w-full px-10 md:px-6 ">
-                                            <div className="flex">
-                                                <button onClick={() => { handleRemove(item.url) }} type="button" className="text-white  px-5 py-2.5 text-center me-2 mb-2 flex rounded-lg backdrop-blur-md  justify-center">
-                                                    <Image height={35} width={35} src='/delete.png' alt="" className='' />
+                                        <div className="flex justify-between items-end h-full w-full px-3 md:px-6 ">
+                                            <div className="flex h-full items-end md:pb-2.5 ">
+                                                <button onClick={() => { handleRemove(item.url) }} type="button" className="text-white  md:px-5 md:py-2 text-center  mb-5 md:mb-0 ml-2 flex rounded-lg backdrop-blur-md  justify-center">
+                                                    <Image height={35} width={35} src='/delete.png' alt="" className='h-[35px]' />
                                                 </button>
                                             </div>
 
-                                            {/* <Link href={item.downloadLink}> */}
-                                            <button onClick={() => handleDownload(item.downloadLink)} type="button" className=" text-white  px-5 py-2.5 text-center me-2 mb-2 flex rounded-lg backdrop-blur-md  justify-center">
-                                                <Image height={35} width={35} src='/download.png' alt="" className='  ' />
-                                            </button>
-                                            {/* </Link> */}
+                                            <div className="flex h-full items-start md:items-end">
+                                                <button onClick={() => handleDownload(item.downloadLink)} type="button" className=" text-white mt-3 md:px-5 md:py-2.5 text-center mb-2 flex rounded-lg backdrop-blur-md  justify-center">
+                                                    <Image height={35} width={35} src='/d1.png' alt="" className='h-[35px]  ' />
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
