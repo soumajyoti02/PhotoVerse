@@ -154,7 +154,7 @@ export default function Home() {
 	return (
 		<>
 			<Navbar setSearch={setSearch} islogin={islogin} setisLogin={setisLogin} issignup={issignup} setisSignup={setisSignup} isToken={isToken} setisToken={setisToken} />
-			<div className='min-h-screen w-screen  '>
+			<div className=' w-screen  '>
 				<ToastContainer
 					position="bottom-left"
 					autoClose={3000}
@@ -168,7 +168,7 @@ export default function Home() {
 					theme="light"
 				/>
 				<img src="/back.jpg" alt="" className="absolute top-0 left-0 h-full w-full object-cover opacity-30 bg-repeat -z-50" />
-				<div className="min-h-[89vh] w-screen  bg-transparent flex ">
+				<div className="min-h-[75vh] w-screen  bg-transparent flex ">
 					<div className="w-11/12 h-full m-auto md:flex flex-wrap justify-between items-center">
 						<div className="left text-center md:text-left mt-16 md:w-[40%] md:ml-16">
 							<h1 className="text-4xl font-bold text-black">Welcome to PhotoVerse</h1>
