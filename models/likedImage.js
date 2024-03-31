@@ -14,10 +14,15 @@ const likedImageSchema = new Schema({
         default: [],   // Default value is an empty array
         required: true,
     },
-    id: {
+    downloadLink: {
         type: String,
         required: false
-    }
+    },
+    comments: {
+        type: String,
+        required: false
+    },
+
 }, { timestamps: true });
 
 const LikedImage = mongoose.models.LikedImage || mongoose.model("LikedImage", likedImageSchema);

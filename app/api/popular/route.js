@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     try {
         await connectMongoDB();
-        const { url, email } = await req.json();
+        const { url, email, downloadLink } = await req.json();
 
         // Check if the user has already liked the image
         const existingLike = await LikedImage.findOne({ url, likedBy: email });
@@ -21,7 +21,7 @@ export async function POST(req) {
 
             if (!image) {
                 // If the image doesn't exist, create a new one
-                image = await LikedImage.create({ url, likes: 1, likedBy: [email] });
+                image = await LikedImage.create({ url, likes: 1, likedBy: [email], downloadLink });
             }
 
             return NextResponse.json({ image, message: "success" }, { status: 200 });

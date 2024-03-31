@@ -1,26 +1,29 @@
 "use client"
 import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar'
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import Navbar from '../components/Navbar'
-import Image from 'next/image';
 
 const Popular = () => {
-
-    const [imageList, setimageList] = useState([])
+    const [imageList, setimageList] = useState([]) // To store the returned Images from DB
     const [isLoading, setisLoading] = useState(false)
     const [email, setEmail] = useState('')
     const [isToken, setisToken] = useState(false)
+    const [search, setSearch] = useState('')
 
+    // To navigate User into Login page if they want to like a image without login
+    const router = useRouter()
 
-
+    // Fetching the most liked images
     const fetchData = async () => {
         const data = await fetch('/api/trending')
-        const res = await data.json()
-        setimageList(res.allImages)
+        const res = await data.json() // In res.allImages, all trending images are present
+        setimageList(res.allImages) // Saving the most liked images inside imageList state
     }
 
     useEffect(() => {
@@ -29,17 +32,13 @@ const Popular = () => {
         const token = localStorage.getItem("sessionToken")
         const userEmail = localStorage.getItem("userEmail")
         if (token) {
-            setisToken(true)
+            setisToken(true) // To pass into Navbar. It will Customise Navbar for loggedin users
             setEmail(userEmail)
         }
-
     }, [])
 
-
+    // User can like a image in this `/popular` route also
     const handleLike = async (url) => {
-        console.log(isToken);
-        console.log(email);
-
         if (isToken) {
             const data = await fetch('api/popular', {
                 method: 'POST',
@@ -50,10 +49,6 @@ const Popular = () => {
             })
 
             const res = await data.json()
-            console.log(`${res.image ? res.image.likes : ''}`)
-            console.log(res);
-
-
             if (res.message === 'success') {
                 toast.success('Liked!', {
                     position: "bottom-left",
@@ -95,13 +90,24 @@ const Popular = () => {
                 router.push("/")
             }, 2000);
         }
-
     }
 
+    /*
+    Getting the DownloadLink from the LikedImage Model. 
+    When saving an image to LikedImage model within the /explore route's handleLike function, 
+    I append {downloadLink: item.links.download + '&force=true'} 
 
+    So, in every other route, I only need to use item.downloadLink. 
+    However, within /explore, I must include {item.links.download + '&force=true'}  to download an image
+    because I'm directly using the download link from the image, 
+    not from my LikedImage model in the database.
+    */
+    const handleDownload = (url) => {
+        router.push(url)
+    }
     return (
         <>
-            <Navbar isToken={isToken} setisToken={setisToken} />
+            <Navbar setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
             <div className="min-h-screen w-screen">
                 <p className="text-2xl font-bold my-10 text-center">Trending Images</p>
                 <ToastContainer
@@ -116,6 +122,8 @@ const Popular = () => {
                     pauseOnHover
                     theme="light"
                 />
+
+                {/* Fetching the images from imageList array */}
                 <div className="h-fit grid grid-flow-dense grid-cols-1 md:grid-cols-4 gap-2 w-11/12 m-auto">
                     {
                         imageList.map((item, index) => {
@@ -133,10 +141,11 @@ const Popular = () => {
                                                 <button onClick={() => { handleLike(item.url) }} type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex ">Like
                                                     <Image height={20} width={20} src='/like.png' alt="" className=' backdrop-blur-3xl rounded-full ml-4' />
                                                 </button>
-
                                             </div>
 
-                                            <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Save</button>
+                                            <button onClick={() => handleDownload(item.downloadLink)} type="button" className=" text-white  px-5 py-2.5 text-center me-2 mb-2 flex rounded-lg  justify-center">
+                                                <Image height={35} width={35} src='/download.png' alt="" className='  ' />
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

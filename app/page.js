@@ -18,6 +18,7 @@ export default function Home() {
 	const [islogin, setisLogin] = useState(false)
 	const [issignup, setisSignup] = useState(true)
 	const [isToken, setisToken] = useState(false)
+	const [search, setSearch] = useState('')
 	const router = useRouter()
 
 	const [error, setError] = useState(false)
@@ -150,7 +151,7 @@ export default function Home() {
 
 	return (
 		<>
-			<Navbar islogin={islogin} setisLogin={setisLogin} issignup={issignup} setisSignup={setisSignup} isToken={isToken} setisToken={setisToken} />
+			<Navbar setSearch={setSearch} islogin={islogin} setisLogin={setisLogin} issignup={issignup} setisSignup={setisSignup} isToken={isToken} setisToken={setisToken} />
 			<div className='min-h-screen w-screen  '>
 				<ToastContainer
 					position="bottom-left"
