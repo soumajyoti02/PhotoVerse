@@ -124,7 +124,7 @@ const Mylikes = () => {
 
                                             <div className="flex h-full items-start md:items-end">
                                                 <button onClick={() => handleDownload(item.downloadLink)} type="button" className=" text-white mt-3 md:px-5 md:py-2.5 text-center mb-2 flex rounded-lg backdrop-blur-md  justify-center">
-                                                    <Image height={35} width={35} src='/d1.png' alt="" className='h-[35px]  ' />
+                                                    <Image height={35} width={35} src='/download.png' alt="" className='h-[35px]  ' />
                                                 </button>
                                             </div>
                                         </div>
