@@ -19,7 +19,13 @@ const likedImageSchema = new Schema({
         required: false
     },
     comments: {
-        type: String,
+        type: [
+            {
+                name: String,
+                username: String,
+                comm: String
+            }
+        ],
         required: false
     },
     desc: {
