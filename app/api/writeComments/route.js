@@ -13,7 +13,7 @@ export async function POST(req) {
         const likedImage = await LikedImage.findOne({ url });
 
         if (!likedImage) {
-            return NextResponse.json({ message: "Image not found" }, { status: 404 });
+            return NextResponse.json({ message: "notLiked" }, { status: 200 });
         }
 
         // Add the user's comment to the comments array

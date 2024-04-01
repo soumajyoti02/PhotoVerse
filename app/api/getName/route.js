@@ -15,7 +15,7 @@ export async function POST(req) {
         }
         else {
             return NextResponse.json(
-                { message: "An error occurred" },
+                { message: "No User Found" },
                 { status: 500 }
             );
         }
