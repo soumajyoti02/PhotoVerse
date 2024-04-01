@@ -382,7 +382,7 @@ const Explore = () => {
 									<div className='search flex bg-gray-300 w-full rounded-3xl  '>
 										<input value={userComments} onChange={(e) => setuserComments(e.target.value)} type="comment" name="search" id="search" placeholder='Your thoughts...' className='py-1 px-5 w-[85%] rounded-l-3xl h-10 bg-gray-300 text-black placeholder:text-slate-500 outline-none' />
 
-										<button onClick={handleComments} className='w-[15%] md:flex justify-center items-center'>
+										<button disabled={userComments.length == 0} onClick={handleComments} className='w-[15%] md:flex justify-center items-center disabled:blur-xl'>
 											<Image width={37} height={40} src="/comment.png" alt="" className='h-7 w-7 cursor-pointer mr-5 md:mr-0 ' />
 										</button>
 									</div>
