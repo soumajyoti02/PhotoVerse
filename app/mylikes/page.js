@@ -7,13 +7,14 @@ import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.min.css';
-import Link from 'next/link';
 
 const Mylikes = () => {
   const [isToken, setisToken] = useState(false)
   const [imageList, setimageList] = useState([]) // To store the liked images
   const [search, setSearch] = useState('')
   const [hovered, setHovered] = useState(false);
+  const [deleteitem, setDeleteItem] = useState('')
+  const [deleteState, setdeleteState] = useState(false)
 
   // For Image Details Popup
   const [viewBox, setviewBox] = useState(false)
@@ -44,7 +45,6 @@ const Mylikes = () => {
     setviewBox(!viewBox)
   }
   const handleComments = async () => {
-
     const email = localStorage.getItem("userEmail");
     // Getting the name of the user
     const nameOfUser = await fetch(`/api/getName`, {
@@ -101,9 +101,6 @@ const Mylikes = () => {
     }
   }
 
-
-
-
   const router = useRouter()
 
   // To fetch the liked images of that user
@@ -155,6 +152,7 @@ const Mylikes = () => {
         draggable: true,
         progress: undefined,
       })
+      setdeleteState(!deleteState)
       await fetchData(userEmail) // Rerendering My Likes section to show the change
     }
   }
@@ -217,7 +215,7 @@ const Mylikes = () => {
 
                     <div className="flex justify-between items-center h-[75%] w-[65%] mx-auto rounded-3xl mt-10 ">
                       <div className="flex">
-                        <button onClick={() => { handleRemove(item.url) }} type="button" className="text-white  px-5 py-2.5 text-center me-2 mb-2 flex  ">
+                        <button onClick={() => { setDeleteItem(item.url); setdeleteState(!deleteState) }} type="button" className="text-white  px-5 py-2.5 text-center me-2 mb-2 flex  ">
                           <Image height={47} width={47} src='/delete.png' alt="" className=' rounded-full ' />
                         </button>
                       </div>
@@ -234,29 +232,27 @@ const Mylikes = () => {
 
           {/* Delete Confirmation */}
 
-          {/* <div id="popup-modal" tabindex="-1" class=" overflow-y-auto overflow-x-hidden fixed top-40 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-						<div class="relative p-4 w-full max-w-md max-h-full">
-							<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-								<button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-									<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-									</svg>
-									<span class="sr-only">Close modal</span>
-								</button>
-								<div class="p-4 md:p-5 text-center">
-									<svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-									</svg>
-									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
-									<button data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-										Yes, Im sure
-									</button>
-									<button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
-								</div>
-							</div>
-						</div>
-					</div> */}
-
+          {deleteState && <div tabindex="-1" className={`fixed flex justify-center items-center md:items-start top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm transition-all duration-300`}>
+            <div className="relative p-4 w-full max-w-md max-h-full">
+              <div className="relative bg-[#e7ecef] rounded-lg shadow ">
+                <button onClick={() => { setdeleteState(!deleteState) }} type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                  <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                  </svg>
+                </button>
+                <div className="p-4 md:p-5 text-center">
+                  <svg className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className='text-red-600' d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                  <h3 className="mb-5 text-lg font-normal text-gray-600">Are you sure you want to remove this image?</h3>
+                  <button onClick={() => { handleRemove(deleteitem) }} type="button" className="text-white bg-red-600 hover:bg-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                    Yes, Im sure
+                  </button>
+                  <button onClick={() => { setdeleteState(!deleteState) }} type="button" className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">No, cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>}
         </div>
 
 
@@ -280,7 +276,7 @@ const Mylikes = () => {
 
               {/* Image details side of Box popup */}
               <div className="right relative md:w-[55%] h-[90%] px-2 pt-5 md:overflow-auto md:pr-6">
-                <p className="text-2xl ">{desc}</p>
+                <p className="text-2xl ">{desc.charAt(0).toUpperCase() + desc.slice(1)}</p>
                 {/* Download Button */}
                 <button onClick={() => handleDownload(dlinkStore)} className="relative inline-flex items-center justify-center p-0.5 mb-1 mt-5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 ">
                   <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
@@ -292,7 +288,9 @@ const Mylikes = () => {
                 </button>
 
                 {/* Owner Details goes here */}
-                <p className="text-base text-gray-700 text-center md:text-left mt-5 underline underline-offset-8">Owner Details</p>
+                <div className="px-5  bg-gradient-to-l from-slate-500 to-slate-800 w-fit rounded-3xl flex items-center justify-center py-2 mt-5 md:mt-2 shadow-lg mx-auto select-none mb-2">
+                  <p className="text-base text-gray-200 text-center md:text-left ">Owner Details</p>
+                </div>
                 <div className="flex flex-col flex-wrap md:flex-row justify-between">
                   <div className="text-lg flex space-x-2 mt-3">
                     <img src={owner.profile_image} alt="profile_photo" className='rounded-full h-10' />
@@ -325,7 +323,9 @@ const Mylikes = () => {
                     </button>
                   </div>
                   <div className="mt-5 overflow-auto">
-                    <p className="text-base text-gray-700 text-center md:text-left underline underline-offset-8 mb-3">All Comments</p>
+                    <div className="px-5  bg-gradient-to-l from-slate-500 to-slate-800 w-fit rounded-3xl flex items-center justify-center py-2 mt- md:mt-2 shadow-lg mx-auto select-none mb-5">
+                      <p className="text-base text-gray-200 text-center md:text-left ">All Comments</p>
+                    </div>
                     {
                       comments.length === 0 && <p className="mt-5 text-base text-gray-500 text-center md:text-left ">No comments till now. Add one!</p>
                     }

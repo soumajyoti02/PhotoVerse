@@ -342,7 +342,7 @@ const Explore = () => {
 
 							{/* Image details side of Box popup */}
 							<div className="right relative md:w-[55%] h-[90%] px-2 pt-5 md:overflow-auto md:pr-6">
-								<p className="text-2xl ">{desc}</p>
+								<p className="text-2xl ">{desc.charAt(0).toUpperCase() + desc.slice(1)}</p>
 								{/* Download Button */}
 								<button onClick={() => handleDownload(dlinkStore)} className="relative inline-flex items-center justify-center p-0.5 mb-1 mt-5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 ">
 									<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
@@ -354,7 +354,9 @@ const Explore = () => {
 								</button>
 
 								{/* Owner Details goes here */}
-								<p className="text-base text-gray-700 text-center md:text-left mt-5 underline underline-offset-8">Owner Details</p>
+								<div className="px-5  bg-gradient-to-l from-slate-500 to-slate-800 w-fit rounded-3xl flex items-center justify-center py-2 mt-5 md:mt-2 shadow-lg mx-auto select-none mb-2">
+									<p className="text-base text-gray-200 text-center md:text-left ">Owner Details</p>
+								</div>
 								<div className="flex flex-col flex-wrap md:flex-row justify-between">
 									<div className="text-lg flex space-x-2 mt-3">
 										<img src={owner.profile_image} alt="profile_photo" className='rounded-full h-10' />
@@ -387,7 +389,9 @@ const Explore = () => {
 										</button>
 									</div>
 									<div className="mt-5 overflow-auto">
-										<p className="text-base text-gray-700 text-center md:text-left underline underline-offset-8 mb-3">All Comments</p>
+										<div className="px-5  bg-gradient-to-l from-slate-500 to-slate-800 w-fit rounded-3xl flex items-center justify-center py-2 mt- md:mt-2 shadow-lg mx-auto select-none mb-5">
+											<p className="text-base text-gray-200 text-center md:text-left ">All Comments</p>
+										</div>
 										{
 											comments && comments.length === 0 && <p className="mt-5 text-base text-gray-500 text-center md:text-left ">No comments till now. Add one!</p>
 										}

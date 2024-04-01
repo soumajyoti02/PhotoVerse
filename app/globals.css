@@ -74,7 +74,7 @@ body {
 
 /* Apply custom scrollbar styles */
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 2px;
     /* Width of the scrollbar */
 }
 
