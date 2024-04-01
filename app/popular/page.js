@@ -175,7 +175,7 @@ const Popular = () => {
         progress: undefined,
         theme: "light",
       });
-      setcomments(res.comments);
+      setcomments(res.comments.reverse());
       setuserComments('')
       console.log(comments);
     }
@@ -196,8 +196,8 @@ const Popular = () => {
     <>
       <Navbar setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
       <div className="min-h-[79vh] w-screen relative flex flex-col">
-        <div className="flex justify-center items-center h-28">
-          <p className="text-lg md:text-3xl font-bold py-3 px-6 bg-gradient-to-r from-[#d2d9df] to-[#c1cdd6] shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow rounded-3xl text-slate-700 select-none bg-[#e7ecef]">
+        <div className="flex md:justify-start ml-5 md:ml-20 items-center h-24">
+          <p className="text-md md:text-lg font-semibold py-3 px-6 shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow rounded-xl bg-gradient-to-r from-emerald-900 to-red-800 bg-clip-text text-transparent select-none bg-[#e7ecef]">
             Most Liked Images
           </p>
         </div>
@@ -258,7 +258,7 @@ const Popular = () => {
 
 
         {/* Image Details Popup */}
-        <div className={`fixed h-[90vh] w-screen ${viewBox ? 'flex' : 'hidden'}  justify-center items-center backdrop-blur-md pb-16 md:pb-0`}>
+        <div className={`fixed h-[90vh] w-screen ${viewBox ? 'flex' : 'hidden'}  justify-center items-center bg-[#e7ecef] bg-opacity-50 transition-opacity backdrop-blur-md pb-16 md:pb-0`}>
           <div className="absolute h-[80%] md:w-9/12 w-[95%] bg-[#e7ecef]  rounded-3xl px-5 md:overflow-hidden overflow-auto">
             <div className=" h-[10%] w-full flex justify-end items-start sticky top-0 bg-[#e7ecef] rounded-b-xl box-border py-2.5 px-5 z-50">
 

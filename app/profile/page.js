@@ -135,8 +135,8 @@ const Profile = () => {
         <>
             <Navbar setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
             <div className="min-h-[75vh]">
-                <div className="flex justify-center items-center h-28">
-                    <p className="text-lg md:text-3xl font-bold w-fit h-fit bg-slate-300 py-3 px-6 shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow rounded-3xl select-none">My Profile</p>
+                <div className="flex md:justify-start ml-5 md:ml-20 items-center h-24">
+                    <p className="text-md md:text-lg font-semibold py-3 px-6 shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow rounded-xl bg-gradient-to-r from-emerald-900 to-red-800 bg-clip-text text-transparent select-none bg-[#e7ecef]">My Profile</p>
                 </div>
                 <ToastContainer
                     position="bottom-left"
@@ -153,7 +153,7 @@ const Profile = () => {
 
                 {/* Update name side */}
                 <div className="flex flex-col md:flex-row md:justify-around items-center w-11/12 h-full m-auto md:mt-20">
-                    <div className="nameChanger h-fit w-full md:w-[35%] bg-slate-300 flex flex-col justify-center items-center rounded-3xl p-4 shadow-lg hover:shadow-2xl transition-shadow shadow-slate-300">
+                    <div className="nameChanger h-fit w-full md:w-[35%] bg-gradient-to-r from-neutral-300 to-stone-200 flex flex-col justify-center items-center rounded-3xl p-4 shadow-lg hover:shadow-2xl transition-shadow shadow-slate-300">
                         <p className='text-center font-semibold text-xl mt-3 mb-6'>Update Name</p>
                         <div className="flex flex-col w-11/12">
                             <label htmlFor="name" className='text-sm mb-1 ml-1 font-light'>Current Name</label>
@@ -167,7 +167,7 @@ const Profile = () => {
                     </div>
 
                     {/* Update Password Side */}
-                    <div className="nameChanger h-fit w-full md:w-[35%] bg-slate-300 flex flex-col justify-center items-center rounded-3xl p-4 shadow-lg hover:shadow-2xl transition-shadow shadow-slate-300 mt-10 md:mt-0">
+                    <div className="nameChanger h-fit w-full md:w-[35%] bg-gradient-to-r from-neutral-300 to-stone-200 flex flex-col justify-center items-center rounded-3xl p-4 shadow-lg hover:shadow-2xl transition-shadow shadow-slate-300 mt-10 md:mt-0">
                         <p className='text-center font-semibold text-xl mt-3 mb-6'>Update Password</p>
 
                         <div className="flex flex-col w-11/12">

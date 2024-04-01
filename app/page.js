@@ -17,6 +17,8 @@ export default function Home() {
 	const [isToken, setisToken] = useState(false)
 	const [search, setSearch] = useState('')
 	const [loginButtonDisplay, setLoginButtonDisplay] = useState(true)
+	const [registerbuttonDisplay, setregisterbuttonDisplay] = useState(true)
+	const [subscribe, setSubscribe] = useState('')
 
 	const [error, setError] = useState(false)
 	const [name, setName] = useState('')
@@ -32,9 +34,39 @@ export default function Home() {
 		}
 	}, [])
 
+	const handleSubscribe = () => {
+		const isEmail = (str) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
+		if (isEmail(subscribe)) {
+			toast.success('Subscribed!', {
+				position: "bottom-left",
+				autoClose: 1000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
+			setSubscribe('')
+		}
+		else {
+			toast.error('Invalid Email', {
+				position: "bottom-left",
+				autoClose: 1000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
+			setSubscribe('')
+		}
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		setregisterbuttonDisplay(false)
 		setLoginButtonDisplay(false)
 
 		setName('')
@@ -169,8 +201,8 @@ export default function Home() {
 				<div className="min-h-[75vh] w-screen  bg-transparent flex ">
 					<div className="w-11/12 h-full m-auto md:flex flex-wrap justify-between items-center">
 						<div className="left text-center md:text-left mt-16 md:w-[40%] md:ml-16">
-							<h1 className="text-4xl font-bold text-black">Welcome to PhotoVerse</h1>
-							<p className="text-xl font-base text-black mt-5">
+							<h1 className="md:text-4xl text-3xl font-bold text-black">Welcome to PhotoVerse</h1>
+							<p className="md:text-xl text-lg font-base text-black mt-5">
 								Whether you are searching for inspiration, looking to brighten your day, or simply seeking the perfect image, we have got you covered.
 							</p>
 							<Link href={'/explore'}>
@@ -181,9 +213,9 @@ export default function Home() {
 								<h2 className="title-font font-medium text-gray-900 text-sm  text-left">Subscribe to our news letter</h2>
 								<div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap items-center md:justify-start mt-2">
 									<div className="relative w-72 md:w-96 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
-										<input type="text" id="footer-field" name="footer-field" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Enter Email Here" />
+										<input value={subscribe} onChange={(e) => { setSubscribe(e.target.value) }} type="text" id="footer-field" name="footer-field" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Enter Email Here" />
 									</div>
-									<button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ml-[5.5rem] mt-2 md:ml-0 md:mt-0">Subscribe</button>
+									<button onClick={handleSubscribe} className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ml-[5.5rem] mt-2 md:ml-0 md:mt-0">Subscribe</button>
 								</div>
 							</div>
 						</div>
@@ -208,7 +240,7 @@ export default function Home() {
 								</div>
 
 								<p className="text-xs font-bold text-red-700 mb-1">{error}</p>
-								<button disabled={!loginButtonDisplay} type="submit" onClick={handleSubmit} className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
+								<button disabled={!registerbuttonDisplay} type="submit" onClick={handleSubmit} className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
 
 
 								<p className="text-xs text-gray-500 mt-3">Already have account? <span onClick={() => { setisSignup(!issignup); setisLogin(!islogin) }} className="underline cursor-pointer">Sign in here</span></p>
@@ -242,6 +274,7 @@ export default function Home() {
 						{isToken && <div className="flex justify-center items-center h-fit md:w-[40%] relative mt-10 md:mt-0 shadow-slate-600 shadow-xl hover:shadow-2xl transition-shadow rounded-3xl">
 							{/* Image */}
 							<div className="relative bg-gray-600 rounded-3xl">
+
 								<Image
 									height={600}
 									width={600}
@@ -264,6 +297,9 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
+
+
+
 
 		</>
 	);

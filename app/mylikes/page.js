@@ -83,7 +83,7 @@ const Mylikes = () => {
         progress: undefined,
         theme: "light",
       });
-      setcomments(res.comments);
+      setcomments(res.comments.reverse());
       setuserComments('')
       console.log(comments);
     }
@@ -176,8 +176,8 @@ const Mylikes = () => {
     <>
       <Navbar setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
       <div className="min-h-[79vh] w-screen relative flex flex-col">
-        <div className="flex justify-center items-center h-28">
-          <p className="text-2xl md:text-3xl font-bold w-fit h-fit bg-slate-300 py-3 px-6 shadow-lg rounded-3xl">My Likes ({imageList.length} images)</p>
+        <div className="flex md:justify-start ml-5 md:ml-20 items-center h-24">
+          <p className="text-md md:text-lg font-semibold py-3 px-6 shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow rounded-xl bg-gradient-to-r from-emerald-900 to-red-800 bg-clip-text text-transparent select-none bg-[#e7ecef]">My Likes <span className='bg-gradient-to-r from-emerald-900 to-red-800 bg-clip-text text-transparent font-bold'>({imageList.length} images)</span></p>
         </div>
         <ToastContainer
           position="bottom-left"
@@ -257,7 +257,7 @@ const Mylikes = () => {
 
 
         {/* Image Details Popup */}
-        <div className={`fixed h-[90vh] w-screen ${viewBox ? 'flex' : 'hidden'}  justify-center items-center backdrop-blur-md transition-all duration-500 pb-16 md:pb-0`}>
+        <div className={`fixed h-[90vh] w-screen ${viewBox ? 'flex' : 'hidden'}  justify-center items-center bg-[#e7ecef] bg-opacity-50 backdrop-blur-md transition-all duration-500 pb-16 md:pb-0`}>
           <div className="absolute h-[80%] md:w-9/12 w-[95%] bg-[#e7ecef]  rounded-3xl px-5 md:overflow-hidden overflow-auto">
             <div className=" h-[10%] w-full flex justify-end items-start sticky top-0 bg-[#e7ecef] rounded-b-xl box-border py-2.5 px-5 z-50">
 

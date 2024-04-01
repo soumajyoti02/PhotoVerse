@@ -22,9 +22,9 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
 
     return (
         <>
-            <nav className="sticky top-0 left-0 w-screen py-1 border-b border-b-white md:border-none rounded-b-3xl shadow-slate-300 shadow-md transition-all duration-300 backdrop-blur-3xl z-50">
+            <nav className="sticky top-0 left-0 w-screen py-1 border-b border-b-white md:border-none rounded-b-3xl shadow-slate-300 shadow-md transition-all duration-300 bg-opacity-80 bg-[#e7ecef] backdrop-blur-3xl z-50">
                 <div className='h-16 md:h-[4.5rem] w-11/12 m-auto pt-5 pb-3  flex justify-between items-center md:pb-6 sticky top-0'>
-                    <Link href={'/'} className="text-2xl font-bold text-black md:flex items-center">PhotoVerse</Link>
+                    <Link href={'/'} className="text-2xl font-bold bg-gradient-to-r from-green-900 to-stone-700 bg-clip-text text-transparent md:flex items-center">PhotoVerse</Link>
 
                     <div className="flex space-x-5">
 
@@ -49,9 +49,9 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
                             </Link>
                         </li>
                         <div className="flex justify-center items-center space-x-8">
-                            <Link href={'/explore'} className='text-black text-lg text-center font-bold '>Explore</Link>
-                            <Link href={'/popular'} className='text-black text-lg text-center font-bold '>Popular</Link>
-                            {isToken && <Link href={'/mylikes'} className='text-black text-lg text-center font-bold '>My Likes</Link>}
+                            <Link href={'/explore'} className='bg-gradient-to-r from-green-900 to-stone-700 bg-clip-text text-transparent text-lg text-center font-bold neon-text'>Explore</Link>
+                            <Link href={'/popular'} className='bg-gradient-to-r from-green-900 to-stone-700 bg-clip-text text-transparent text-lg text-center font-bold neon-text'>Popular</Link>
+                            {isToken && <Link href={'/mylikes'} className='bg-gradient-to-r from-green-900 to-stone-700 bg-clip-text text-transparent text-lg text-center font-bold neon-text'>My Likes</Link>}
                             {!isToken && <Link href={'/'} onClick={() => { setisSignup(false); setisLogin(true) }} className='bg-yellow-400 w-28 rounded-3xl p-2 font-bold text-center m-auto hover:bg-yellow-500 cursor-pointer'>
                                 Login
                             </Link>}
@@ -71,13 +71,13 @@ const Navbar = ({ islogin, issignup, setisLogin, setisSignup, isToken, setisToke
                         </Link>
                     </li>
                     <li className='flex h-14 justify-center items-center border-b border-slate-300'>
-                        <Link href={'/explore'} className='text-black text-lg text-center  font-bold '>Explore</Link>
+                        <Link href={'/explore'} className='bg-gradient-to-r from-green-900 to-stone-700 bg-clip-text text-transparent text-lg text-center  font-bold '>Explore</Link>
                     </li>
                     <li className='flex h-14 justify-center items-center border-b border-slate-300'>
-                        <Link href={'/popular'} className='text-black text-lg text-center  font-bold '>Popular Images</Link>
+                        <Link href={'/popular'} className='bg-gradient-to-r from-green-900 to-stone-700 bg-clip-text text-transparent text-lg text-center  font-bold '>Popular Images</Link>
                     </li>
                     {isToken && <li className='flex h-14 justify-center items-center'>
-                        <Link href={'/mylikes'} className='text-black text-lg text-center  font-bold '>My Likes</Link>
+                        <Link href={'/mylikes'} className='bg-gradient-to-r from-green-900 to-stone-700 bg-clip-text text-transparent text-lg text-center  font-bold '>My Likes</Link>
                     </li>}
                     <li className="flex h-14 justify-center">
                         {!isToken && <Link href={'/'} onClick={() => { setisSignup(false); setisLogin(true); setsearchText(''); setMenu(!menu) }} className='bg-yellow-400 w-28 rounded-3xl p-2 font-bold text-center m-auto mt-5 cursor-pointer select-none'>Login</Link>}
