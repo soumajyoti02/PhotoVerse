@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.min.css';
+import QuickSearch from '../components/QuickSearch'
 
 const Explore = () => {
 	const access_key = "Z79VCnstJy-KX6RXnze1D1hphoCx5Y2brwCwbdEM-UA"
@@ -259,9 +260,18 @@ const Explore = () => {
 	return (
 		<>
 			<Navbar setSearch={setSearch} isToken={isToken} setisToken={setisToken} />
-			<div className='min-h-[79vh] w-screen relative flex flex-col'>
-				<div className="flex md:justify-start ml-5 md:ml-20 items-center h-24">
+			<div className='min-h-[79vh] w-screen relative flex flex-col overflow-x-hidden'>
+				<div className="flex w-full md:justify-start ml-5 md:ml-20 items-end md:items-center h-20 md:h-24">
 					<p className="text-md md:text-lg font-semibold py-3 px-6 shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow rounded-xl bg-gradient-to-r from-emerald-900 to-red-800 bg-clip-text text-transparent select-none bg-[#e7ecef]">Showing Images: <span className='bg-gradient-to-r from-emerald-900 to-red-800 bg-clip-text text-transparent'>{search}</span></p>
+
+
+					<div className="md:flex ml-36 justify-center space-x-5 hidden">
+						<QuickSearch title={"Mountains"} slug={"mountains"} />
+						<QuickSearch title={"Beach"} slug={"beach"} />
+						<QuickSearch title={"Forest"} slug={"Forest"} />
+						<QuickSearch title={"Sunrise"} slug={"Sunrise"} />
+						<QuickSearch title={"Lake"} slug={"Lake"} />
+					</div>
 				</div>
 				<ToastContainer
 					position="bottom-left"
@@ -275,6 +285,15 @@ const Explore = () => {
 					pauseOnHover
 					theme="light"
 				/>
+
+				<div className="md:hidden w-11/12 m-auto space-x-5 flex overflow-x-auto">
+					<QuickSearch title={"Mountains"} slug={"mountains"} />
+					<QuickSearch title={"Beach"} slug={"beach"} />
+					<QuickSearch title={"Forest"} slug={"Forest"} />
+					<QuickSearch title={"Sunrise"} slug={"Sunrise"} />
+					<QuickSearch title={"Lake"} slug={"lake"} />
+					<QuickSearch title={"City"} slug={"City"} />
+				</div>
 
 				{/* Fetching the images from the image array */}
 				<div className="ctr w-11/12">

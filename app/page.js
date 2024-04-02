@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.min.css';
+import TrendingCard from "./components/TrendingCard";
+import QuickSearch from "./components/QuickSearch";
 
 export default function Home() {
 	const [islogin, setisLogin] = useState(false)
@@ -198,7 +200,20 @@ export default function Home() {
 					theme="light"
 				/>
 				<img src="/back.jpg" alt="" className="absolute top-0 left-0 h-full w-full object-cover opacity-30 bg-repeat -z-50" />
-				<div className="min-h-[75vh] w-screen  bg-transparent flex ">
+				<div className="min-h-[75vh] w-screen  bg-transparent flex flex-col overflow-x-hidden">
+
+					<div className="md:flex w-screen justify-center space-x-5 hidden">
+						<QuickSearch title={"Mountains"} slug={"mountains"} />
+						<QuickSearch title={"Beach"} slug={"beach"} />
+						<QuickSearch title={"Forest"} slug={"Forest"} />
+						<QuickSearch title={"Sunrise"} slug={"Sunrise"} />
+						<QuickSearch title={"Aesthetic"} slug={"Aesthetic"} />
+						<QuickSearch title={"Sunset"} slug={"Sunset"} />
+						<QuickSearch title={"Lake"} slug={"Lake"} />
+						<QuickSearch title={"CityCity"} slug={"City"} />
+						<QuickSearch title={"Village"} slug={"Village"} />
+					</div>
+
 					<div className="w-11/12 h-full m-auto md:flex flex-wrap justify-between items-center">
 						<div className="left text-center md:text-left mt-16 md:w-[40%] md:ml-16">
 							<h1 className="md:text-4xl text-3xl font-bold text-black">Welcome to PhotoVerse</h1>
@@ -208,6 +223,15 @@ export default function Home() {
 							<Link href={'/explore'}>
 								<button type="button" className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl mt-6 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Explore <span className="text-xl mb-2">&rarr;</span></button>
 							</Link>
+
+							<div className="md:hidden w-11/12 m-auto space-x-5 flex overflow-x-auto">
+								<QuickSearch title={"Mountains"} slug={"mountains"} />
+								<QuickSearch title={"Beach"} slug={"beach"} />
+								<QuickSearch title={"Forest"} slug={"Forest"} />
+								<QuickSearch title={"Sunrise"} slug={"Sunrise"} />
+								<QuickSearch title={"Lake"} slug={"Lake"} />
+								<QuickSearch title={"City"} slug={"City"} />
+							</div>
 
 							<div className="newsletter w-full px-4 md:px-0 mt-6 md:mt-10">
 								<h2 className="title-font font-medium text-gray-900 text-sm  text-left">Subscribe to our news letter</h2>
@@ -272,9 +296,9 @@ export default function Home() {
 						</form>}
 
 						{isToken && <div className="flex justify-center items-center h-fit md:w-[40%] relative mt-10 md:mt-0 shadow-slate-600 shadow-xl hover:shadow-2xl transition-shadow rounded-3xl">
-							{/* Image */}
-							<div className="relative bg-gray-600 rounded-3xl">
 
+							{/* Image for loggedin Users*/}
+							<div className="relative bg-gray-600 rounded-3xl">
 								<Image
 									height={600}
 									width={600}
@@ -298,9 +322,22 @@ export default function Home() {
 				</div>
 			</div>
 
+			<section className="w-11/12 md:w-[80%] m-auto py-10">
+				<p className="md:block hidden text-4xl bg-gradient-to-r from-emerald-800 to-red-900 bg-clip-text text-transparent my-16 text-center font-bold">Featured Images</p>
+				<div className="flex md:hidden justify-center mb-5">
+					<button className="px-16 py-3 bg-gradient-to-r from-neutral-600 to-gray-700 rounded-xl">
+						<h1 className="text-lg bg-gradient-to-r from-emerald-100 to-red-200 bg-clip-text text-transparent">Featured</h1>
+					</button>
+				</div>
+				<div className="md:flex w-full px-3 justify-between flex-wrap">
+					<TrendingCard title={"Chilly Lapland"} slug={"Lapland"} image={"/cd1.jpg"} />
+					<TrendingCard title={"Ancient City"} slug={"Ancient City"} image={"/cd2.jpg"} />
+					<div className="md:block hidden">
+						<TrendingCard title={"Hot Desert"} slug={"Sahara Desert"} image={"/cd3.jpg"} />
+					</div>
+				</div>
 
-
-
+			</section>
 		</>
 	);
 }

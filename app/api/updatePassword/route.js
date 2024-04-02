@@ -11,7 +11,6 @@ export async function POST(req) {
         const user = await User.findOne({ email })
 
         if (bcrypt.compareSync(currentpassword, user.password)) {
-            console.log("User password matched")
             const hashedPassword = await bcrypt.hash(password, 10);
 
             const user = await User.findOneAndUpdate(

@@ -11,8 +11,6 @@ export async function POST(req) {
         const user = await User.findOne({ email })
 
         if (bcrypt.compareSync(password, user.password)) {
-            console.log("User password matched")
-
             // Generate JWT token with user information
             const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
                 expiresIn: '30d', // Token expiration (e.g., 30 days)

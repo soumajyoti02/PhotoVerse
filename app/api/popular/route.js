@@ -9,8 +9,6 @@ export async function POST(req) {
 
         // Check if the user has already liked the image
         const existingLike = await LikedImage.findOne({ url, likedBy: email });
-        console.log(existingLike);
-
         if (!existingLike) {
             // If the user hasn't liked the image, increment the like count and add the user's email
             let image = await LikedImage.findOneAndUpdate(
@@ -29,7 +27,6 @@ export async function POST(req) {
                 };
                 image = await LikedImage.create({ url, likes: 1, likedBy: [email], downloadLink, desc, owner: ownerObject });
             }
-
             return NextResponse.json({ image, message: "success" }, { status: 200 });
         } else {
             return NextResponse.json({ message: "Already Liked" }, { status: 400 });

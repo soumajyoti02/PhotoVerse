@@ -7,11 +7,9 @@ export async function POST(req) {
         await connectMongoDB();
 
         const { url, email, userComments, name } = await req.json();
-        // console.log(`url: ${url}, email: ${email}, userComments: ${userComments}`);
 
         // Find the image by its URL
         const likedImage = await LikedImage.findOne({ url });
-
         if (!likedImage) {
             return NextResponse.json({ message: "notLiked" }, { status: 200 });
         }
@@ -21,14 +19,9 @@ export async function POST(req) {
 
         // Get all comments of the image
         const comments = likedImage.comments;
-        console.log(comments);
-
-
-        // Save the modified image back to the database
         await likedImage.save();
 
         return NextResponse.json({ comments, message: "success" }, { status: 200 });
-
     } catch (error) {
         console.error("Error during adding comment:", error);
         return NextResponse.json({ message: "An error occurred while processing the request" }, { status: 500 });
